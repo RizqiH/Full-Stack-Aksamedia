@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
-export default function HomePage(): JSX.Element {
+export default function HomePage() {
   const { user, isLoading } = useAuth();
   const router = useRouter();
 

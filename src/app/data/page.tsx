@@ -1,15 +1,16 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Navbar from '@/components/Navbar';
 import Pagination from '@/components/Pagination';
 import EmployeeAvatar from '@/components/EmployeeAvatar';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { useEmployee } from '@/contexts/EmployeeContext';
 
-export default function DataPage() {
+function DataPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const {
@@ -362,5 +363,17 @@ export default function DataPage() {
         </div>
       </div>
     </ProtectedRoute>
+  );
+}
+
+export default function DataPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner size="xl" variant="primary" />
+      </div>
+    }>
+      <DataPageContent />
+    </Suspense>
   );
 }

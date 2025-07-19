@@ -24,7 +24,7 @@ export default function StatCard({
   error = null,
   subtitle,
   trend,
-}: StatCardProps): JSX.Element {
+}: StatCardProps) {
   return (
     <div className="card-hover p-6 rounded-xl">
       <div className="flex items-center">

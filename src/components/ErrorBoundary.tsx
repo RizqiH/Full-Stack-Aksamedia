@@ -121,7 +121,7 @@ interface ErrorFallbackProps {
   onReset: () => void;
 }
 
-function ErrorFallback({ error, onReset }: ErrorFallbackProps): JSX.Element {
+function ErrorFallback({ error, onReset }: ErrorFallbackProps) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
       <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">

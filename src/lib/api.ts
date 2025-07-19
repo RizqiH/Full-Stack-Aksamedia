@@ -124,8 +124,22 @@ class ApiService {
   }
 
   // Get authentication headers
-  private getHeaders(): HeadersInit {
-    const headers: HeadersInit = {
+  private getHeaders(): Record<string, string> {
+    const headers: Record<string, string> = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    };
+
+    if (this.token) {
+      headers['Authorization'] = `Bearer ${this.token}`;
+    }
+
+    return headers;
+  }
+
+  // Get headers for FormData requests (without Content-Type)
+  private getFormDataHeaders(): Record<string, string> {
+    const headers: Record<string, string> = {
       'Accept': 'application/json',
     };
 
@@ -225,13 +239,9 @@ class ApiService {
       formData.append('image', employee.image);
     }
 
-    const headers = this.getHeaders();
-    // Remove Content-Type to let browser set it with boundary for FormData
-    delete headers['Content-Type'];
-
     const response = await fetch(`${this.baseUrl}/employees`, {
       method: 'POST',
-      headers,
+      headers: this.getFormDataHeaders(),
       body: formData,
     });
 
@@ -252,13 +262,9 @@ class ApiService {
       formData.append('image', employee.image);
     }
 
-    const headers = this.getHeaders();
-    // Remove Content-Type to let browser set it with boundary for FormData
-    delete headers['Content-Type'];
-
     const response = await fetch(`${this.baseUrl}/employees/${id}`, {
       method: 'POST', // Laravel expects POST with _method=PUT for file uploads
-      headers,
+      headers: this.getFormDataHeaders(),
       body: formData,
     });
 

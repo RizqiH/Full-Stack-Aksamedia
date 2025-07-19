@@ -22,8 +22,12 @@ export const metadata: Metadata = {
   description: 'Frontend Developer Internship Test Application',
   keywords: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Employee Management'],
   authors: [{ name: 'Aksamedia Development Team' }],
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 interface RootLayoutProps {

@@ -45,7 +45,7 @@ export default function Button({
   disabled,
   children,
   ...props
-}: ButtonProps): JSX.Element {
+}: ButtonProps) {
   const isDisabled = disabled || loading;
 
   return (
@@ -111,7 +111,7 @@ export function IconButton({
   className = '',
   disabled,
   ...props
-}: IconButtonProps): JSX.Element {
+}: IconButtonProps) {
   const isDisabled = disabled || loading;
 
   const buttonSizeClasses: Record<ButtonSize, string> = {
