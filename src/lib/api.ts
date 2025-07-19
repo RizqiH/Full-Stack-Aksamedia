@@ -98,6 +98,7 @@ export interface ApiResponse<TData = unknown> {
 class ApiService {
   private readonly baseUrl = API_BASE_URL;
   private token: string | null = null;
+  private csrfToken: string | null = null;
 
   constructor() {
     // Load token dari localStorage pada initialization
@@ -121,6 +122,35 @@ class ApiService {
   // Get authentication token
   getToken(): string | null {
     return this.token;
+  }
+
+  // Get CSRF token from backend
+  private async getCsrfToken(): Promise<string> {
+    if (this.csrfToken) {
+      return this.csrfToken; // TypeScript tahu csrfToken bukan null di sini
+    }
+
+    try {
+      const response = await fetch(`${this.baseUrl}/csrf-token`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+        },
+        credentials: 'include', // Include cookies for CSRF
+      });
+
+      const result = await response.json();
+      
+      if (result.status === 'success' && result.data?.csrf_token) {
+        this.csrfToken = result.data.csrf_token;
+        return this.csrfToken!; // Non-null assertion karena kita sudah check di atas
+      } else {
+        throw new Error('Failed to get CSRF token');
+      }
+    } catch (error) {
+      console.error('Error getting CSRF token:', error);
+      throw error;
+    }
   }
 
   // Get authentication headers
@@ -181,16 +211,23 @@ class ApiService {
     }
   }
 
-  // Login method
+  // Login method dengan CSRF protection
   async login(credentials: LoginRequest): Promise<LoginResponse> {
+    const csrfToken = await this.getCsrfToken();
+    
+    if (!csrfToken) {
+      throw new Error('Unable to obtain CSRF token');
+    }
+    
     const response = await fetch(`${this.baseUrl}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        
+        'X-CSRF-TOKEN': csrfToken, 
       },
-      credentials: 'omit', // Tidak kirim cookies untuk menghindari CORS issues
+      credentials: 'include', 
+      mode: 'cors', 
       body: JSON.stringify(credentials),
     });
 
