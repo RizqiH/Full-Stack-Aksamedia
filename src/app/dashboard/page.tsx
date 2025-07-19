@@ -46,7 +46,7 @@ export default function DashboardPage() {
                 <p className="text-secondary text-lg max-w-2xl">
                   Monitor dan kelola data karyawan dengan real-time statistics
                 </p>
-              </div>
+                  </div>
               <div className="mt-4 sm:mt-0">
                 <Button
                   onClick={handleRefresh}
@@ -119,7 +119,7 @@ export default function DashboardPage() {
                         Lihat Semua
                         <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
+                      </svg>
                       </Button>
                     </Link>
                   </div>
@@ -162,13 +162,13 @@ export default function DashboardPage() {
                               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                               </svg>
-                            </div>
+                  </div>
                           }
                         >
                           Tambah Karyawan Pertama
                         </Button>
                       </Link>
-                    </div>
+                </div>
                   )}
                 </div>
               </div>
@@ -226,8 +226,8 @@ export default function DashboardPage() {
                           <div className="p-1 bg-gray-200 dark:bg-gray-600 group-hover:bg-gray-300 dark:group-hover:bg-gray-500 rounded-full transition-colors duration-200">
                             <svg className="w-4 h-4 text-gray-600 dark:text-gray-300 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                          </div>
+                      </svg>
+                    </div>
                           <span className="font-medium">Edit Profile</span>
                         </div>
                       </Button>
@@ -271,12 +271,12 @@ export default function DashboardPage() {
                   <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
                     <svg className="w-4 h-4 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                      </svg>
                   </div>
                   <div>
                     <h3 className="text-sm font-medium text-red-800 dark:text-red-300">
                       Data Loading Error
-                    </h3>
+                      </h3>
                     <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
                   </div>
                   <Button onClick={handleRefresh} variant="outline" size="sm">

@@ -1,5 +1,5 @@
 // API Service Layer untuk integrasi dengan backend Laravel
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://backend-rizkiamanan.wasmer.app/api';
 
 // Types berdasarkan backend API
 export interface LoginRequest {
@@ -154,19 +154,31 @@ class ApiService {
   private async handleResponse<T>(response: Response): Promise<T> {
     const contentType = response.headers.get('content-type');
     
-    if (!contentType || !contentType.includes('application/json')) {
-      throw new Error('Invalid response format');
+    try {
+      if (!contentType || !contentType.includes('application/json')) {
+        const text = await response.text();
+        console.error('Non-JSON response:', text);
+        throw new Error(`Invalid response format. Response: ${text.substring(0, 200)}`);
+      }
+
+      const data = await response.json() as T;
+
+      if (!response.ok) {
+        console.error('API Error:', { status: response.status, data });
+        const error = new Error(`HTTP ${response.status}: ${response.statusText}`);
+        Object.assign(error, { status: response.status, data });
+        throw error;
+      }
+
+      return data;
+    } catch (e) {
+      if (e instanceof SyntaxError) {
+        const text = await response.text();
+        console.error('Failed to parse JSON:', text);
+        throw new Error('Invalid JSON response from server');
+      }
+      throw e;
     }
-
-    const data = await response.json() as T;
-
-    if (!response.ok) {
-      const error = new Error(`HTTP ${response.status}: ${response.statusText}`);
-      Object.assign(error, { status: response.status, data });
-      throw error;
-    }
-
-    return data;
   }
 
   // Login method
@@ -176,6 +188,7 @@ class ApiService {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Origin': window.location.origin,
       },
       body: JSON.stringify(credentials),
     });

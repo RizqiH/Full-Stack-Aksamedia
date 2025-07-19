@@ -13,7 +13,7 @@ import { Division, EmployeeCreateRequest } from '@/lib/api';
 export default function CreateEmployeePage() {
   const router = useRouter();
   const { createEmployee } = useEmployee();
-  
+
   const [divisions, setDivisions] = useState<Division[]>([]);
   const [isLoadingDivisions, setIsLoadingDivisions] = useState(true);
 
@@ -239,8 +239,8 @@ export default function CreateEmployeePage() {
                           <span className="mt-1 block text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                             PNG, JPG, GIF hingga 2MB
                           </span>
-                        </label>
-                        <input
+                          </label>
+                          <input
                           id="image"
                           name="image"
                           type="file"
@@ -254,48 +254,48 @@ export default function CreateEmployeePage() {
                   
                   {errors.image && (
                     <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.image}</p>
-                  )}
-                </div>
+                          )}
+                        </div>
 
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Nama Lengkap *
-                  </label>
-                  <input
+                          </label>
+                          <input
                     id="name"
                     name="name"
                     type="text"
                     required
                     value={formData.name}
-                    onChange={handleChange}
+                            onChange={handleChange}
                     className="form-input-override w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                     placeholder="Masukkan nama lengkap karyawan"
-                  />
+                          />
                   {errors.name && (
                     <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
-                  )}
-                </div>
+                          )}
+                        </div>
 
                 {/* Phone */}
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Nomor Telepon *
-                  </label>
-                  <input
+                          </label>
+                          <input
                     id="phone"
                     name="phone"
-                    type="tel"
+                            type="tel"
                     required
-                    value={formData.phone}
-                    onChange={handleChange}
+                            value={formData.phone}
+                            onChange={handleChange}
                     className="form-input-override w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                     placeholder="Contoh: +62 812 3456 7890"
-                  />
-                  {errors.phone && (
+                          />
+                          {errors.phone && (
                     <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.phone}</p>
-                  )}
-                </div>
+                          )}
+                        </div>
 
                 {/* Division */}
                 <div>
@@ -338,21 +338,21 @@ export default function CreateEmployeePage() {
                 <div>
                   <label htmlFor="position" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Posisi/Jabatan *
-                  </label>
+                          </label>
                   <input
                     id="position"
                     name="position"
                     type="text"
                     required
                     value={formData.position}
-                    onChange={handleChange}
+                            onChange={handleChange}
                     className="form-input-override w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200"
                     placeholder="Contoh: Frontend Developer, Marketing Manager"
-                  />
+                          />
                   {errors.position && (
                     <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.position}</p>
-                  )}
-                </div>
+                          )}
+                        </div>
 
                 {/* Submit Error */}
                 {errors.submit && (
@@ -373,7 +373,7 @@ export default function CreateEmployeePage() {
                       type="button"
                       disabled={isSubmitting}
                       className="w-full px-4 py-2 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
-                    >
+                  >
                       Batal
                     </button>
                   </Link>

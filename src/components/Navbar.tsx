@@ -109,64 +109,64 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link
-              href="/dashboard"
-              className="text-xl font-bold text-indigo-600 dark:text-indigo-400 hover:scale-105 transition-transform duration-200"
+            <div className="flex-shrink-0">
+              <Link
+                href="/dashboard"
+                className="text-xl font-bold text-indigo-600 dark:text-indigo-400 hover:scale-105 transition-transform duration-200"
               onClick={closeMobileMenu}
-            >
-              Aksamedia
-            </Link>
-          </div>
+              >
+                Aksamedia
+              </Link>
+            </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-1">
-            <Link
-              href="/dashboard"
-              className="group relative px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
-            >
-              <span className="relative z-10">Dashboard</span>
-              <div className="absolute inset-0 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-200"></div>
-            </Link>
-            <Link
-              href="/data"
-              className="group relative px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
-            >
+              <Link
+                href="/dashboard"
+                className="group relative px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
+              >
+                <span className="relative z-10">Dashboard</span>
+                <div className="absolute inset-0 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-200"></div>
+              </Link>
+              <Link
+                href="/data"
+                className="group relative px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-200 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
+              >
               <span className="relative z-10">Data Karyawan</span>
-              <div className="absolute inset-0 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-200"></div>
-            </Link>
+                <div className="absolute inset-0 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-200"></div>
+              </Link>
           </div>
 
           {/* Right Side - Theme Toggle and User Menu */}
           <div className="flex items-center space-x-2">
             {/* Theme Toggle */}
             <div className="relative" ref={themeDropdownRef}>
-              <button
+                <button
                 type="button"
                 onClick={toggleThemeDropdown}
                 className="p-2 text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/20"
                 aria-label="Toggle theme"
-              >
+                >
                 <span className="text-lg">
                   {THEME_OPTIONS[theme].icon}
                 </span>
-              </button>
+                </button>
 
               {themeDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50">
                   {Object.entries(THEME_OPTIONS).map(([themeKey, config]) => (
-                    <button
+                  <button
                       key={themeKey}
                       onClick={() => handleThemeChange(themeKey as ThemeOption)}
                       className={`w-full px-4 py-2 text-left text-sm flex items-center space-x-2 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors duration-200 ${
                         theme === themeKey
                           ? 'text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/10'
-                          : 'text-gray-700 dark:text-gray-300'
-                      }`}
-                    >
+                        : 'text-gray-700 dark:text-gray-300'
+                    }`}
+                  >
                       <span>{config.icon}</span>
                       <span>{config.label}</span>
-                    </button>
+                  </button>
                   ))}
                 </div>
               )}
@@ -181,10 +181,10 @@ export default function Navbar() {
                 aria-label="User menu"
               >
                 <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center text-white text-sm font-semibold">
-                  {user.name.charAt(0).toUpperCase()}
+                    {user.name.charAt(0).toUpperCase()}
                 </div>
                 <div className="hidden sm:block text-sm font-medium max-w-24 truncate">
-                  {user.name}
+                    {user.name}
                 </div>
                 <svg
                   className={`w-4 h-4 transition-transform duration-200 ${
@@ -214,20 +214,20 @@ export default function Navbar() {
                     </p>
                   </div>
                   
-                  <Link
-                    href="/profile"
-                    onClick={() => setDropdownOpen(false)}
+                    <Link
+                      href="/profile"
+                      onClick={() => setDropdownOpen(false)}
                     className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-colors duration-200"
-                  >
+                    >
                     Profile
-                  </Link>
+                    </Link>
                   
-                  <button
-                    onClick={handleLogout}
+                    <button
+                      onClick={handleLogout}
                     className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200"
-                  >
+                    >
                     Sign out
-                  </button>
+                    </button>
                 </div>
               )}
             </div>

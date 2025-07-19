@@ -41,9 +41,9 @@ export function ThemeProvider({
   const getSystemTheme = useCallback((): ResolvedTheme => {
     if (typeof window === 'undefined') return 'light';
     
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
   }, []);
 
   // Apply theme to DOM
@@ -75,7 +75,7 @@ export function ThemeProvider({
     setResolvedTheme(newResolvedTheme);
     applyThemeToDOM(newResolvedTheme);
   }, [getSystemTheme, applyThemeToDOM]);
-
+      
   // Load theme from localStorage safely
   const loadStoredTheme = useCallback((): Theme => {
     try {
@@ -103,7 +103,7 @@ export function ThemeProvider({
     const initialTheme = loadStoredTheme();
     setTheme(initialTheme);
     updateResolvedTheme(initialTheme);
-    setMounted(true);
+      setMounted(true);
   }, [loadStoredTheme, updateResolvedTheme]);
 
   // Listen for system theme changes
@@ -132,7 +132,7 @@ export function ThemeProvider({
   useEffect(() => {
     if (!mounted) return;
     
-    updateResolvedTheme(theme);
+      updateResolvedTheme(theme);
     saveThemeToStorage(theme);
   }, [theme, mounted, updateResolvedTheme, saveThemeToStorage]);
 

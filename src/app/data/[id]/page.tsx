@@ -173,7 +173,7 @@ export default function ItemDetailPage() {
                     </dt>
                     <dd className="mt-1 text-sm text-foreground sm:mt-0 sm:col-span-2">
                       <EmployeeAvatar 
-                        src={employee.image} 
+                            src={employee.image}
                         name={employee.name} 
                         size="xl"
                       />
