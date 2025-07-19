@@ -1,41 +1,166 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
+# Dependencies
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# Next.js
+.next/
+out/
+build/
+dist/
 
-# vercel
-.vercel
-
-# typescript
+# Production builds
 *.tsbuildinfo
 next-env.d.ts
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+out
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Logs
+logs
+*.log
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# Laravel Backend specific
+employeee-api/vendor/
+employeee-api/storage/logs/*.log
+employeee-api/storage/framework/cache/data/*
+employeee-api/storage/framework/sessions/*
+employeee-api/storage/framework/testing/*
+employeee-api/storage/framework/views/*
+employeee-api/bootstrap/cache/*.php
+
+# Composer
+employeee-api/composer.lock
+
+# Laravel Mix
+employeee-api/public/hot
+employeee-api/public/storage
+employeee-api/storage/*.key
+
+# PHP specific
+*.php~
+*.php.bak
+*.php.swp
+*.php.swo
+
+# Database
+*.sqlite
+*.sqlite3
+
+# Image uploads and storage
+employeee-api/storage/app/public/*
+employeee-api/public/storage/employees/*
+
+# Testing
+employeee-api/coverage/
+employeee-api/.phpunit.result.cache
+
+# Documentation
+docs/_build/
+
+# OS generated files
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# IDE files
+*.sublime-project
+*.sublime-workspace
+.vscode/
+.idea/
+
+# Package managers
+package-lock.json
+yarn.lock
+composer.lock
+
+# Screenshots and demo files
+*.png
+*.jpg
+*.jpeg
+*.gif
+!public/favicon.ico
+!public/*.svg 

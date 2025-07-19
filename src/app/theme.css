@@ -1,0 +1,266 @@
+/* Theme Styles - Fixed for proper dark/light mode switching */
+
+/* Root HTML and Body Theme Styles - High Priority */
+html {
+  background-color: #ffffff !important;
+  color: #111827 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html.dark {
+  background-color: #111827 !important;
+  color: #f9fafb !important;
+}
+
+body {
+  background-color: inherit !important;
+  color: inherit !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Force main container styles */
+html .min-h-screen {
+  background-color: #f9fafb !important;
+  transition: background-color 0.3s ease;
+}
+
+html.dark .min-h-screen {
+  background-color: #111827 !important;
+}
+
+/* Specific page backgrounds */
+html .dashboard-gradient {
+  background: linear-gradient(135deg, #dbeafe 0%, #c7d2fe 100%) !important;
+}
+
+html.dark .dashboard-gradient {
+  background: #111827 !important;
+}
+
+/* Glass Effect Components */
+.glass {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+nav.glass {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.8) !important;
+}
+
+html.dark nav.glass {
+  background-color: rgba(17, 24, 39, 0.95) !important;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.8) !important;
+}
+
+/* Card Components */
+.card-hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(229, 231, 235, 0.6) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+html.dark .card-hover {
+  background-color: rgba(31, 41, 55, 0.9) !important;
+  border: 1px solid rgba(75, 85, 99, 0.6) !important;
+}
+
+.card-hover:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  transform: scale(1.02);
+}
+
+html.dark .card-hover:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Button overrides */
+.btn-primary {
+  background-color: #4f46e5 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-primary:hover {
+  background-color: #4338ca !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary {
+  background-color: #e5e7eb !important;
+  color: #111827 !important;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+html.dark .btn-secondary {
+  background-color: #374151 !important;
+  color: #f9fafb !important;
+}
+
+.btn-secondary:hover {
+  background-color: #d1d5db !important;
+}
+
+html.dark .btn-secondary:hover {
+  background-color: #4b5563 !important;
+}
+
+/* Form Elements with high specificity */
+.form-input,
+input.form-input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #d1d5db !important;
+  border-radius: 0.5rem;
+  background-color: #f9fafb !important;
+  color: #111827 !important;
+  transition: all 0.2s ease;
+}
+
+html.dark .form-input,
+html.dark input.form-input {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+.form-input:focus,
+input.form-input:focus {
+  outline: none;
+  border-color: #4f46e5 !important;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1) !important;
+}
+
+.form-input::placeholder,
+input.form-input::placeholder {
+  color: #6b7280 !important;
+}
+
+html.dark .form-input::placeholder,
+html.dark input.form-input::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Animation Utilities */
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 2s ease-in-out infinite;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Loading States */
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  border-radius: 50%;
+  border: 4px solid #e5e7eb;
+  border-top-color: #4f46e5;
+}
+
+html.dark .loading-spinner {
+  border-color: #374151;
+  border-top-color: #6366f1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Text Utilities with high priority */
+.text-primary {
+  color: #4f46e5 !important;
+}
+
+html.dark .text-primary {
+  color: #818cf8 !important;
+}
+
+.text-secondary {
+  color: #6b7280 !important;
+}
+
+html.dark .text-secondary {
+  color: #9ca3af !important;
+}
+
+.text-muted {
+  color: #9ca3af !important;
+}
+
+html.dark .text-muted {
+  color: #6b7280 !important;
+}
+
+/* Ensure Tailwind dark: classes don't override our theme */
+html:not(.dark) .dark\:bg-gray-900 {
+  background-color: #f9fafb !important;
+}
+
+html:not(.dark) .dark\:text-gray-100 {
+  color: #111827 !important;
+}
+
+html:not(.dark) .dark\:bg-gray-800 {
+  background-color: #ffffff !important;
+}
+
+/* Fix specific problematic Tailwind utilities */
+html.dark [class*="bg-white"] {
+  background-color: #374151 !important;
+}
+
+html.dark [class*="text-gray-900"] {
+  color: #f9fafb !important;
+}
+
+html [class*="bg-gray-50"] {
+  background-color: #f9fafb !important;
+}
+
+html.dark [class*="bg-gray-50"] {
+  background-color: #111827 !important;
+} 

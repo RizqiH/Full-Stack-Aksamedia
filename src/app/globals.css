@@ -1,26 +1,336 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Modern glassmorphism and animation effects */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes slide-in {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes slide-in-right {
+  from { 
+    opacity: 0; 
+    transform: translateX(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+/* Custom utility classes */
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+.animate-slide-in { animation: slide-in 0.6s ease-out; }
+.animate-slide-in-right { animation: slide-in-right 0.6s ease-out; }
+.animate-gradient { animation: gradient-shift 3s ease infinite; }
+.animate-sparkle { animation: sparkle 1.5s ease-in-out infinite; }
+
+/* Glassmorphism effect */
+.glass {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgb(243 244 246);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background-color: rgb(31 41 55);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(99 102 241);
+  border-radius: 9999px;
+  transition: all 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(79 70 229);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(99 102 241) rgb(243 244 246);
+}
+
+.dark * {
+  scrollbar-color: rgb(99 102 241) rgb(31 41 55);
+}
+
+/* Focus styles */
+.focus-ring:focus {
+  box-shadow: 0 0 0 2px rgb(99 102 241);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+/* Primary text colors for better visibility */
+.text-primary {
+  color: rgb(17 24 39); /* gray-900 for light mode */
+}
+
+.dark .text-primary {
+  color: rgb(249 250 251); /* gray-50 for dark mode */
+}
+
+.text-secondary {
+  color: rgb(75 85 99); /* gray-600 for light mode */
+}
+
+.dark .text-secondary {
+  color: rgb(156 163 175); /* gray-400 for dark mode */
+}
+
+.text-muted {
+  color: rgb(107 114 128); /* gray-500 for light mode */
+}
+
+.dark .text-muted {
+  color: rgb(156 163 175); /* gray-400 for dark mode */
+}
+
+/* Form input overrides for visibility */
+.form-input-override {
+  background-color: white !important;
+  color: #111827 !important;
+}
+
+.dark .form-input-override {
+  background-color: #1f2937 !important;
+  color: white !important;
+}
+
+.form-input-override::placeholder {
+  color: #6b7280 !important;
+}
+
+.dark .form-input-override::placeholder {
+  color: #9ca3af !important;
+}
+
+.form-select-override {
+  background-color: white !important;
+  color: #111827 !important;
+}
+
+.dark .form-select-override {
+  background-color: #1f2937 !important;
+  color: white !important;
+}
+
+.form-select-override option {
+  background-color: white !important;
+  color: #111827 !important;
+}
+
+.dark .form-select-override option {
+  background-color: #1f2937 !important;
+  color: white !important;
+}
+
+/* Mobile dropdown scrolling fixes */
+.mobile-select-dropdown {
+  /* Enable better mobile dropdown scrolling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+}
+
+.dark .mobile-select-dropdown {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+/* Mobile scrolling fixes */
+@media (max-width: 768px) {
+  .min-h-screen {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    /* Prevent horizontal bounce on iOS */
+    overscroll-behavior-x: none;
+  }
+  
+  /* Ensure mobile forms are scrollable */
+  .mobile-scroll-fix {
+    max-height: calc(100vh - 64px); /* Account for navbar height */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Enhanced mobile dropdown */
+  .mobile-select-dropdown {
+    font-size: 16px; /* Prevent zoom on iOS */
+    min-height: 44px; /* iOS recommended touch target */
+    line-height: 1.2;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    cursor: pointer;
+    /* Ensure dropdown doesn't get cut off */
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Better touch targets for mobile */
+  .mobile-select-dropdown:focus {
+    transform: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+  }
+  
+  /* Improve touch responsiveness */
+  .mobile-select-dropdown:active {
+    background-color: rgba(59, 130, 246, 0.05);
+  }
+  
+  .dark .mobile-select-dropdown:active {
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+  
+  /* Custom scrollbar for mobile select (if supported) */
+  .mobile-select-dropdown option {
+    padding: 0.75rem 1rem;
+    line-height: 1.5;
+    min-height: 44px;
+    font-size: 16px;
+  }
+  
+  /* Additional iOS Safari fixes */
+  @supports (-webkit-touch-callout: none) {
+    .mobile-select-dropdown {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+      transform: translateZ(0); /* Force hardware acceleration */
+    }
+    
+    /* Better dropdown appearance on iOS */
+    .mobile-select-dropdown::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 8px;
+    }
+    
+    .mobile-select-dropdown::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, .3);
+    }
+    
+    .dark .mobile-select-dropdown::-webkit-scrollbar-thumb {
+      background-color: rgba(255, 255, 255, .3);
+    }
+  }
+  
+  /* Android-specific improvements */
+  @media (max-width: 768px) and (orientation: portrait) {
+    .mobile-select-dropdown {
+      /* Better scrolling for Android Chrome */
+      touch-action: manipulation;
+      overscroll-behavior: contain;
+    }
+    
+    /* Ensure dropdown options are properly sized on small screens */
+    .mobile-select-dropdown option {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+  }
+}
+
+/* Dashboard gradient backgrounds */
+.dashboard-gradient {
+  background: linear-gradient(135deg, rgb(249 250 251) 0%, rgb(243 244 246) 100%);
+}
+
+.dark .dashboard-gradient {
+  background: linear-gradient(135deg, rgb(17 24 39) 0%, rgb(31 41 55) 100%);
+}
+
+/* Card hover effects */
+.card-hover {
+  background: rgb(255 255 255);
+  border: 1px solid rgb(229 231 235);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .card-hover {
+  background: rgb(31 41 55);
+  border: 1px solid rgb(75 85 99);
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.dark .card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Button animations */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(100%);
+}
+
+.animate-spin-slow {
+  animation: spin-slow 2s linear infinite;
 }
