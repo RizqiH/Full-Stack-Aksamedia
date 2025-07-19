@@ -7,6 +7,7 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react';
+import { useAuth } from './AuthContext';
 import apiService, { 
   Employee, 
   Division, 
@@ -49,6 +50,7 @@ interface EmployeeProviderProps {
 }
 
 export function EmployeeProvider({ children }: EmployeeProviderProps) {
+  const { user } = useAuth(); // Get authenticated user
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [divisions, setDivisions] = useState<Division[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -188,15 +190,19 @@ export function EmployeeProvider({ children }: EmployeeProviderProps) {
     setError(null);
   };
 
-  // Auto-fetch employees when filters change
+  // Auto-fetch employees when filters change (only if user is authenticated)
   useEffect(() => {
-    fetchEmployees();
-  }, [currentPage, searchTerm, selectedDivision]);
+    if (user) {
+      fetchEmployees();
+    }
+  }, [currentPage, searchTerm, selectedDivision, user]);
 
-  // Fetch divisions on mount
+  // Fetch divisions on mount (only if user is authenticated)
   useEffect(() => {
-    fetchDivisions();
-  }, []);
+    if (user) {
+      fetchDivisions();
+    }
+  }, [user]);
 
   const contextValue: EmployeeContextType = {
     employees,
