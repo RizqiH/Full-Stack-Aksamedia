@@ -188,8 +188,9 @@ class ApiService {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Origin': window.location.origin,
+        
       },
+      credentials: 'omit', // Tidak kirim cookies untuk menghindari CORS issues
       body: JSON.stringify(credentials),
     });
 
